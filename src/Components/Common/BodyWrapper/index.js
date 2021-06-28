@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme)=>({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor:'lightblue',
-        border:'1px solid yellow',
+        border:'2px solid red',
         overflowY:'scroll'
     }
 }))
