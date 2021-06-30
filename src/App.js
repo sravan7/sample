@@ -1,11 +1,12 @@
 import './App.css'
-import React, { Suspense, lazy } from 'react'
+import React, { Suspense, lazy,useState } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import Header  from './Components/Header'
 import SideBar from './Components/SideBar'
 import AppContainer from "./Components/AppContainer"
 import BodyWrapper from "./Components/Common/BodyWrapper"
-
+import useMediaQuery from '@material-ui/core/useMediaQuery'
+import {useTheme} from '@material-ui/core/styles'
 const Home = lazy(() => import('./Pages/Home'))
 const Login = lazy(() => import('./Pages/Login'))
 const Loading = () => (
@@ -22,11 +23,14 @@ const Loading = () => (
     </div>
 )
 function App() {
+    const theme = useTheme()
+    const isDownSM = useMediaQuery(theme.breakpoints.down('sm'))
+    const [open,setOpen] = useState(false)
     return (
         <Switch>
           <AppContainer>
-          <Header />
-          <SideBar />
+          <Header handleClick={()=>{setOpen(open=>!open)}} />
+          <SideBar open={open} isDownSM={isDownSM} />
           <BodyWrapper>
             <Route
                 exact
